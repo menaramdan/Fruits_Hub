@@ -37,6 +37,7 @@ dependencies:
   flutter_launcher_icons: ^0.14.4
   flutter_svg: ^2.3.0
   lottie: ^3.5.1
+  flutter_native_splash: ^2.4.8
 
 dev_dependencies:
   flutter_test:
@@ -102,4 +103,11 @@ flutter_assets:
   output_path: lib/core/utils
   filename: app_images.dart
   field_prefix: false
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: "assets/images/App_Icon.png"
   
+  android_12:
+    image: "assets/images/App_Icon.png"
+    icon_background_color: "#ffffff"
