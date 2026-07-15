@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_app/features/splash/presentation/widgets/splash_screen_widgets/splash_screen_body.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -6,9 +7,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('Welcome to FruitsHub!'),
-      ),
+      body: SplashScreenBody()
     );
   }
 }
