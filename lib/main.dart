@@ -16,6 +16,7 @@ class FruitsHub extends StatelessWidget {
       
     onGenerateRoute: generateRoute,
     initialRoute: AppRoutes.splashScreen,
+    debugShowCheckedModeBanner: false,
     );
   }
 }
