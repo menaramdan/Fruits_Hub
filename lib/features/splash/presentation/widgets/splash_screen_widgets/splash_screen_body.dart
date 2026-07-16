@@ -3,37 +3,79 @@ import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:new_app/core/utils/app_images.dart';
 
-class SplashScreenBody extends StatelessWidget {
+class SplashScreenBody extends StatefulWidget {
   const SplashScreenBody({super.key});
+
+  @override
+  State<SplashScreenBody> createState() => _SplashScreenBodyState();
+}
+
+class _SplashScreenBodyState extends State<SplashScreenBody> {
+  bool _startAnimation = false;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 100), () {
+      if (mounted) {
+        setState(() {
+          _startAnimation = true;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    
+    const animationDuration = Duration(milliseconds: 900);
+    const animationCurve = Curves.easeOutBack;
+
     return Stack(
       children: [
-        Positioned(
-          top: 0.0,
-          left: 0.0,
+        AnimatedPositioned(
+          duration: animationDuration,
+          curve: animationCurve,
+          top: _startAnimation ? 0.0 : -190.0,
+          left: _startAnimation ? 0.0 : -190.0,
           child: SvgPicture.asset(
-            Assets.imageplant63,
+            Assets.plantoftree, // ورقة الشجر الصح
             fit: BoxFit.contain,
             width: 190,
             height: 172,
           ),
         ),
+
         Center(
-          child: Lottie.asset(
-            'assets/animations/Fruit Basket.json',
-            width: 250,
-            height: 250,
+          child: AnimatedOpacity(
+            duration: const Duration(milliseconds: 1000),
+            curve: Curves.easeIn,
+            opacity: _startAnimation ? 1.0 : 0.0, // من مخفي لـ ظاهر
+            child: AnimatedContainer(
+              duration: animationDuration,
+              curve: animationCurve,
+              width: _startAnimation ? 250.0 : 100.0,
+              height: _startAnimation ? 250.0 : 100.0,
+              child: Lottie.asset(
+                'assets/animations/Fruit Basket.json',
+                fit: BoxFit.contain,
+              ),
+            ),
           ),
         ),
 
-        Positioned(
-          bottom: 0.0,
+        AnimatedPositioned(
+          duration: animationDuration,
+          curve: animationCurve,
+          bottom: _startAnimation ? 0.0 : -150.0,
           left: 0.0,
           right: 0.0,
-          child: SvgPicture.asset(Assets.imageplant, width: screenWidth),
+          child: SvgPicture.asset(
+            Assets.bubles, 
+            width: screenWidth,
+            fit: BoxFit.fill,
+          ),
         ),
       ],
     );
