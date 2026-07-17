@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
+import 'package:new_app/core/routes/app_routes.dart';
 import 'package:new_app/core/utils/app_images.dart';
 
 class SplashScreenBody extends StatefulWidget {
@@ -14,21 +15,30 @@ class _SplashScreenBodyState extends State<SplashScreenBody> {
   bool _startAnimation = false;
 
   @override
-  void initState() {
-    super.initState();
-    Future.delayed(const Duration(milliseconds: 100), () {
-      if (mounted) {
-        setState(() {
-          _startAnimation = true;
-        });
-      }
-    });
-  }
+void initState() {
+  super.initState();
 
+  Future.delayed(const Duration(milliseconds: 100), () {
+    if (mounted) {
+      setState(() {
+        _startAnimation = true;
+      });
+    }
+  });
+
+  Future.delayed(const Duration(seconds: 3), () {
+    if (mounted) {
+      Navigator.pushReplacementNamed(
+        context,
+        AppRoutes.onboardingScreen,
+      );
+    }
+  });
+}
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    
+
     const animationDuration = Duration(milliseconds: 900);
     const animationCurve = Curves.easeOutBack;
 
@@ -72,7 +82,7 @@ class _SplashScreenBodyState extends State<SplashScreenBody> {
           left: 0.0,
           right: 0.0,
           child: SvgPicture.asset(
-            Assets.bubles, 
+            Assets.bubles,
             width: screenWidth,
             fit: BoxFit.fill,
           ),
