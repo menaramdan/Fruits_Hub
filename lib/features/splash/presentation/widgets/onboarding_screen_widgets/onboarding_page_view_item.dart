@@ -13,7 +13,7 @@ class OnboardingPageViewItem extends StatelessWidget {
   final String image;
   final String backgroundImage;
   final Widget title;
-  final Widget subtitle;
+  final String subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +33,20 @@ class OnboardingPageViewItem extends StatelessWidget {
                 right: 0,
                 child: SvgPicture.asset(Assets.fruitBasketAmico1, width: 249),
               ),
-              
+
+              Padding(
+                padding: EdgeInsetsGeometry.only(top: 60, right: 20),
+                child: Text('تخط'),
+              ),
             ],
           ),
+        ),
+        SizedBox(height: 60),
+        title,
+        SizedBox(height: 24),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 37.1),
+          child: Text(subtitle.toString(), textAlign: TextAlign.center),
         ),
       ],
     );

@@ -8,11 +8,11 @@ class Assets {
 
   /// Assets for assetsImagesBackgroundImage
   /// assets/images/background_image.svg
-  static const String backgroundImage = "assets/images/background_image.svg";
+  static const String backgrounfimage1 = "assets/images/background_image.svg";
 
   /// Assets for assetsImagesBackgrounfImageBunable
   /// assets/images/backgrounf_image_bunable.svg
-  static const String backgrounfImageBunable = "assets/images/backgrounf_image_bunable.svg";
+  static const String backgroundofbunble = "assets/images/backgrounf_image_bunable.svg";
 
   /// Assets for assetsImagesFreepikCirclesInject5
   /// assets/images/freepik--Circles--inject-5.svg
@@ -28,6 +28,10 @@ class Assets {
 
   /// Assets for assetsImagesPineappleCuate 
   /// assets/images/pineapple-cuate .svg
-  static const String pineappleCuate = "assets/images/pineapple-cuate .svg";
+  static const String assetsImagesPineappleCuate  = "assets/images/pineapple-cuate .svg";
+
+  /// Assets for assetsImagesمرحبًا بك في FruitHUB
+  /// assets/images/مرحبًا بك في FruitHUB.svg
+  static const String welcomeToFruitHub = "assets/images/مرحبًا بك في FruitHUB.svg";
 }
 

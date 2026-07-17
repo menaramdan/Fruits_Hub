@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:new_app/core/helper_function/routes.dart';
 import 'package:new_app/core/routes/app_routes.dart';
-import 'package:new_app/generated/l10n.dart';
+import 'package:new_app/core/generated/l10n.dart';
 void main() {
   runApp(const FruitsHub());
 }
