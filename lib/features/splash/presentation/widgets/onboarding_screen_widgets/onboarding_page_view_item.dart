@@ -8,12 +8,13 @@ class OnboardingPageViewItem extends StatelessWidget {
     required this.image,
     required this.backgroundImage,
     required this.title,
-    required this.subtitle,
+    required this.subtitle, required this.isvisible,
   });
   final String image;
   final String backgroundImage;
   final Widget title;
   final String subtitle;
+  final bool isvisible;
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +35,12 @@ class OnboardingPageViewItem extends StatelessWidget {
                 child: SvgPicture.asset(Assets.fruitBasketAmico1, width: 249),
               ),
 
-              Padding(
-                padding: EdgeInsetsGeometry.only(top: 60, right: 20),
-                child: Text('تخط'),
+              Visibility(
+                visible: isvisible,
+                child: Padding(
+                  padding: EdgeInsetsGeometry.only(top: 60, right: 20),
+                  child: Text('تخط'),
+                ),
               ),
             ],
           ),
