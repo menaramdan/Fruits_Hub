@@ -11,10 +11,12 @@ class OnboardingPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: PageView(
-        controller:  pageController,
+        controller: pageController,
         children: [
           OnboardingPageViewItem(
-            isvisible:(pageController.hasClients? pageController.page!.round()==0 : false ),
+            isvisible: (pageController.hasClients
+                ? pageController.page!.round() == 0
+                : false),
             image: Assets.fruitBasketAmico1,
             backgroundImage: Assets.backgrounfimage1,
             title: Padding(
@@ -25,14 +27,16 @@ class OnboardingPageView extends StatelessWidget {
                 'اكتشف تجربة تسوق فريدة مع FruitHUB. استكشف مجموعتنا الواسعة من الفواكه الطازجة الممتازة واحصل على أفضل العروض والجودة العالية.',
           ),
           OnboardingPageViewItem(
-            isvisible:pageController.hasClients? pageController.page!.round()==0 :false,
+            isvisible: pageController.hasClients
+                ? pageController.page!.round() == 0
+                : false,
             image: Assets.assetsImagesPineappleCuate,
             backgroundImage: Assets.backgroundofbunble,
             title: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 76.5),
               child: Text(
                 'ابحث وتسوق ',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
               ),
             ),
             subtitle:

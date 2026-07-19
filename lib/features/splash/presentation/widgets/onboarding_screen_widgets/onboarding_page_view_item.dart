@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:new_app/core/routes/app_routes.dart';
 import 'package:new_app/core/utils/app_images.dart';
 
 class OnboardingPageViewItem extends StatelessWidget {
@@ -8,7 +9,8 @@ class OnboardingPageViewItem extends StatelessWidget {
     required this.image,
     required this.backgroundImage,
     required this.title,
-    required this.subtitle, required this.isvisible,
+    required this.subtitle,
+    required this.isvisible,
   });
   final String image;
   final String backgroundImage;
@@ -35,11 +37,18 @@ class OnboardingPageViewItem extends StatelessWidget {
                 child: SvgPicture.asset(Assets.fruitBasketAmico1, width: 249),
               ),
 
-              Visibility(
-                visible: isvisible,
-                child: Padding(
-                  padding: EdgeInsetsGeometry.only(top: 60, right: 20),
-                  child: Text('تخط'),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(AppRoutes.loginScreen);
+                },
+                child: Visibility(
+                  visible: isvisible,
+                  child: Padding(
+                    padding: EdgeInsetsGeometry.only(top: 60, right: 20),
+                    child: Text('تخط'),
+                  ),
                 ),
               ),
             ],
