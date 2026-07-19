@@ -1,7 +1,9 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:new_app/core/routes/app_routes.dart';
+import 'package:new_app/core/services/shared_prefrence_singletone.dart';
 import 'package:new_app/core/utils/app_colors.dart';
+import 'package:new_app/core/utils/constants.dart';
 import 'package:new_app/core/widgets/custom_button.dart';
 import 'package:new_app/features/splash/presentation/widgets/onboarding_screen_widgets/onboarding_page_view.dart';
 
@@ -59,9 +61,15 @@ class _OnboardingDcreenBodyState extends State<OnboardingDcreenBody> {
           maintainSize: true,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: CustomButton(text: 'ابدأ الان', onPressed: () {
-              Navigator.of(context).pushReplacementNamed(AppRoutes.loginScreen);
-            }),
+            child: CustomButton(
+              text: 'ابدأ الان',
+              onPressed: () {
+                SharedPrefrenceSingletone.setBool(onboardingKey, true);
+                Navigator.of(
+                  context,
+                ).pushReplacementNamed(AppRoutes.loginScreen);
+              },
+            ),
           ),
         ),
         SizedBox(height: 43),

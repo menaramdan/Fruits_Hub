@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:new_app/core/routes/app_routes.dart';
+import 'package:new_app/core/services/shared_prefrence_singletone.dart';
 import 'package:new_app/core/utils/app_images.dart';
+import 'package:new_app/core/utils/constants.dart';
 
 class SplashScreenBody extends StatefulWidget {
   const SplashScreenBody({super.key});
@@ -15,26 +17,29 @@ class _SplashScreenBodyState extends State<SplashScreenBody> {
   bool _startAnimation = false;
 
   @override
-void initState() {
-  super.initState();
+  void initState() {
+    super.initState();
 
-  Future.delayed(const Duration(milliseconds: 100), () {
-    if (mounted) {
-      setState(() {
-        _startAnimation = true;
-      });
-    }
-  });
+    Future.delayed(const Duration(milliseconds: 100), () {
+      if (mounted) {
+        setState(() {
+          _startAnimation = true;
+        });
+      }
+    });
 
-  Future.delayed(const Duration(seconds: 3), () {
-    if (mounted) {
-      Navigator.pushReplacementNamed(
-        context,
-        AppRoutes.onboardingScreen,
-      );
-    }
-  });
-}
+    Future.delayed(const Duration(seconds: 3), () {
+      if (mounted) {
+        bool onbaordingseen = SharedPrefrenceSingletone.getBool(onboardingKey);
+        if (onbaordingseen) {
+          Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
+        } else {
+          Navigator.pushReplacementNamed(context, AppRoutes.onboardingScreen);
+        }
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_app/core/routes/app_routes.dart';
+import 'package:new_app/core/services/shared_prefrence_singletone.dart';
 import 'package:new_app/core/utils/app_images.dart';
+import 'package:new_app/core/utils/constants.dart';
 
 class OnboardingPageViewItem extends StatelessWidget {
   const OnboardingPageViewItem({
@@ -39,6 +41,7 @@ class OnboardingPageViewItem extends StatelessWidget {
 
               GestureDetector(
                 onTap: () {
+                  SharedPrefrenceSingletone.setBool(onboardingKey, true);
                   Navigator.of(
                     context,
                   ).pushReplacementNamed(AppRoutes.loginScreen);
