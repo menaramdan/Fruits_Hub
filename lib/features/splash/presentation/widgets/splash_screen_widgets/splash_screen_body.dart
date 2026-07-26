@@ -28,7 +28,7 @@ class _SplashScreenBodyState extends State<SplashScreenBody> {
       }
     });
 
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 4), () {
       if (mounted) {
         bool onbaordingseen = SharedPrefrenceSingletone.getBool(onboardingKey);
         if (onbaordingseen) {
