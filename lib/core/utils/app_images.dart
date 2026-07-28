@@ -39,4 +39,7 @@ class Assets {
   static const String welcomeToFruitHub =
       "assets/images/مرحبًا بك في FruitHUB.svg";
   static const String arrowback = "assets/images/arrow_back.svg";
+  static const String googleicon = "assets/images/google_icon.svg";
+  static const String facebook = "assets/images/facebook_icon.svg";
+  static const String appleicon = "assets/images/apple_icon.svg";
 }

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:new_app/core/utils/app_colors.dart';
+import 'package:new_app/core/utils/app_images.dart';
 import 'package:new_app/core/utils/app_text_styles.dart';
 import 'package:new_app/core/widgets/custom_button.dart';
 import 'package:new_app/core/widgets/custom_text_field.dart';
+import 'package:new_app/features/Auth/presentation/widgets/log_in_screen_widgets/asking_of_an_account.dart';
+import 'package:new_app/features/Auth/presentation/widgets/log_in_screen_widgets/divder_or_widget.dart';
+import 'package:new_app/features/Auth/presentation/widgets/log_in_screen_widgets/social_log_in_buttons.dart';
 
 class LogInBody extends StatelessWidget {
   const LogInBody({super.key});
@@ -41,25 +46,26 @@ class LogInBody extends StatelessWidget {
             SizedBox(height: 33),
             CustomButton(text: 'تسجيل دخول', onPressed: () {}),
             SizedBox(height: 33),
-            Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: 'لا تمتلك حساب ؟',
-                    style: TextStyles.semiBold16.copyWith(
-                      fontFamily: 'Cairo',
-                      color: AppColors.gray400,
-                    ),
-                  ),
-                  TextSpan(
-                    text: 'قم بانشاء حساب',
-                    style: TextStyles.semiBold16.copyWith(
-                      fontFamily: 'Cairo',
-                      color: AppColors.greencolor,
-                    ),
-                  ),
-                ],
-              ),
+            Askingofanaccount(),
+            SizedBox(height: 33),
+            DivderOrWidget(),
+            SizedBox(height: 16),
+            SocialLogInButtons(
+              onPressed: () {},
+              title: 'تسجيل بواسطة جوجل',
+              icon: SvgPicture.asset(Assets.googleicon),
+            ),
+            SizedBox(height: 16),
+            SocialLogInButtons(
+              onPressed: () {},
+              title: 'تسجيل بواسطة أبل',
+              icon: SvgPicture.asset(Assets.appleicon),
+            ),
+            SizedBox(height: 16),
+            SocialLogInButtons(
+              onPressed: () {},
+              title: 'تسجيل بواسطة فيسبوك',
+              icon: SvgPicture.asset(Assets.facebook),
             ),
           ],
         ),
