@@ -8,6 +8,7 @@ class SigneUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffFFFFFF),
       appBar: buildeAppBar(context, title: 'حساب جديد'),
       body: SignUpBody(),
     );
