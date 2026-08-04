@@ -1,15 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:new_app/core/utils/app_colors.dart';
 import 'package:new_app/core/utils/app_text_styles.dart';
+import 'package:new_app/features/Auth/presentation/widgets/sign_up_screen_widgets/custom_check_box.dart';
 
-class CheckBox extends StatelessWidget {
+class CheckBox extends StatefulWidget {
   const CheckBox({super.key});
 
+  @override
+  State<CheckBox> createState() => _CheckBoxState();
+}
+
+bool isAgree = false;
+
+class _CheckBoxState extends State<CheckBox> {
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Checkbox(value: false, onChanged: (value) {}),
+        CustomCheckBox(
+          onChanged: (bool value) {
+            isAgree = value;
+            setState(() {});
+          },
+          isChecked: isAgree,
+        ),
+        const SizedBox(width: 8),
         Expanded(
           child: Text.rich(
             TextSpan(

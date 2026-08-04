@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:new_app/core/routes/app_routes.dart';
 import 'package:new_app/core/utils/app_colors.dart';
 import 'package:new_app/core/utils/app_images.dart';
 import 'package:new_app/core/utils/app_text_styles.dart';
@@ -46,7 +48,14 @@ class LogInBody extends StatelessWidget {
             SizedBox(height: 33),
             CustomButton(text: 'تسجيل دخول', onPressed: () {}),
             SizedBox(height: 33),
-            Askingofanaccount(),
+            Askingofanaccount(
+              text: 'لا تمتلك حساب ؟',
+              text2: 'قم بانشاء حساب',
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  Navigator.pushNamed(context, AppRoutes.signUpScreen);
+                },
+            ),
             SizedBox(height: 33),
             DivderOrWidget(),
             SizedBox(height: 16),

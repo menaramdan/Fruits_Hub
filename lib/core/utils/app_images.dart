@@ -42,4 +42,5 @@ class Assets {
   static const String googleicon = "assets/images/google_icon.svg";
   static const String facebook = "assets/images/facebook_icon.svg";
   static const String appleicon = "assets/images/apple_icon.svg";
+  static const String checkedicon = "assets/images/checked.svg";
 }

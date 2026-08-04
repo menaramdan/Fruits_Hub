@@ -1,30 +1,33 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:new_app/core/routes/app_routes.dart';
 import 'package:new_app/core/utils/app_colors.dart';
 import 'package:new_app/core/utils/app_text_styles.dart';
 
 class Askingofanaccount extends StatelessWidget {
-  const Askingofanaccount({super.key});
-
+  const Askingofanaccount({
+    super.key,
+    required this.text,
+    required this.text2,
+    required this.recognizer,
+  });
+  final String text;
+  final String text2;
+  final GestureRecognizer recognizer;
   @override
   Widget build(BuildContext context) {
     return Text.rich(
       TextSpan(
         children: [
           TextSpan(
-            text: 'لا تمتلك حساب ؟',
+            text: text,
             style: TextStyles.semiBold16.copyWith(
               fontFamily: 'Cairo',
               color: AppColors.gray400,
             ),
           ),
           TextSpan(
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                Navigator.pushNamed(context, AppRoutes.signUpScreen);
-              },
-            text: 'قم بانشاء حساب',
+            recognizer: recognizer,
+            text: text2,
             style: TextStyles.semiBold16.copyWith(
               fontFamily: 'Cairo',
               color: AppColors.greencolor,
