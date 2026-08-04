@@ -1,0 +1,10 @@
+import 'package:dart_either/dart_either.dart';
+import 'package:new_app/core/errors/failure.dart';
+import 'package:new_app/features/Auth/Domain/Entities/user_Entity.dart';
+
+abstract class AuthRepo {
+  Future<Either<Failure, UserEntity>> createuserwithemailandpassword(
+    String email,
+    String password,
+  );
+}

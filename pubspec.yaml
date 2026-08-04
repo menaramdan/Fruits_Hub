@@ -23,6 +23,8 @@ dependencies:
   dots_indicator: ^4.0.1
   shared_preferences: ^2.5.5
   firebase_core: ^4.12.1
+  dart_either: ^2.1.0
+  firebase_auth: ^6.5.7
 
 dev_dependencies:
   flutter_test:
