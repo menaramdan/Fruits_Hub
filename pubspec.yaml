@@ -25,6 +25,7 @@ dependencies:
   firebase_core: ^4.12.1
   dart_either: ^2.1.0
   firebase_auth: ^6.5.7
+  flutter_bloc: ^9.1.1
 
 dev_dependencies:
   flutter_test:
