@@ -11,8 +11,15 @@ import 'package:new_app/features/Auth/presentation/widgets/log_in_screen_widgets
 import 'package:new_app/features/Auth/presentation/widgets/log_in_screen_widgets/divder_or_widget.dart';
 import 'package:new_app/features/Auth/presentation/widgets/log_in_screen_widgets/social_log_in_buttons.dart';
 
-class LogInBody extends StatelessWidget {
+class LogInBody extends StatefulWidget {
   const LogInBody({super.key});
+
+  @override
+  State<LogInBody> createState() => _LogInBodyState();
+}
+
+class _LogInBodyState extends State<LogInBody> {
+  final controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +30,32 @@ class LogInBody extends StatelessWidget {
         child: Column(
           children: [
             CustomTextField(
+              onSaved: (value) {
+                controller.text = value ?? ' ';
+              },
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'الرجاء إدخال البريد الإلكتروني';
+                }
+                return null;
+              },
               hinttext: 'البريد الإلكتروني',
               keyboardtype: TextInputType.emailAddress,
+              controller: controller,
             ),
             SizedBox(height: 16),
 
             CustomTextField(
+              onSaved: (value) {
+                controller.text = value ?? ' ';
+              },
+              controller: controller,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'الرجاء إدخال كلمة المرور';
+                }
+                return null;
+              },
               hinttext: 'كلمة المرور',
               keyboardtype: TextInputType.visiblePassword,
               icon: Icon(Icons.remove_red_eye, color: AppColors.coloreye),

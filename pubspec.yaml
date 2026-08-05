@@ -26,6 +26,8 @@ dependencies:
   dart_either: ^2.1.0
   firebase_auth: ^6.5.7
   flutter_bloc: ^9.1.1
+  get_it: ^9.2.1
+  modal_progress_hud_nsn: ^0.5.1
 
 dev_dependencies:
   flutter_test:

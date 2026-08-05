@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:new_app/core/utils/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.text,required this.onPressed});
+  const CustomButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    this.child,
+  });
+  final Widget? child;
   final String text;
   final void Function()? onPressed;
   @override
@@ -12,18 +18,23 @@ class CustomButton extends StatelessWidget {
       height: 54,
       child: ElevatedButton(
         onPressed: onPressed,
-        style: ElevatedButton.styleFrom(backgroundColor: AppColors.greencolor ,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))
-        ),
-        child: Text(
-          text,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.greencolor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
           ),
-          textAlign: TextAlign.center,
         ),
+        child:
+            child ??
+            Text(
+              text,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+              ),
+              textAlign: TextAlign.center,
+            ),
       ),
     );
   }
