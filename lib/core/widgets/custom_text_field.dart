@@ -11,6 +11,7 @@ class CustomTextField extends StatelessWidget {
     required this.validator,
     required this.controller,
     required this.onSaved,
+    this.obscureText = false,
   });
   final String hinttext;
   final Widget? icon;
@@ -18,9 +19,11 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextEditingController? controller;
   final void Function(String?)? onSaved;
+  final bool obscureText;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: obscureText,
       controller: controller,
       validator: validator,
       onSaved: onSaved,

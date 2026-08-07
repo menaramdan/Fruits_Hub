@@ -1,12 +1,13 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:new_app/core/helper_function/build_error.dart';
 import 'package:new_app/core/routes/app_routes.dart';
-import 'package:new_app/core/utils/app_colors.dart';
 import 'package:new_app/core/widgets/custom_button.dart';
 import 'package:new_app/core/widgets/custom_text_field.dart';
 import 'package:new_app/features/Auth/presentation/Cubit/cubit/signup_cubit.dart';
 import 'package:new_app/features/Auth/presentation/widgets/log_in_screen_widgets/asking_of_an_account.dart';
+import 'package:new_app/features/Auth/presentation/widgets/sign_up_screen_widgets/password_field.dart';
 import 'package:new_app/features/Auth/presentation/widgets/sign_up_screen_widgets/terms_and_conditions.dart';
 
 class SignUpBody extends StatefulWidget {
@@ -22,6 +23,7 @@ class _SignUpBodyState extends State<SignUpBody> {
   final TextEditingController emailcontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
+  bool isternismated = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -64,24 +66,14 @@ class _SignUpBodyState extends State<SignUpBody> {
                 keyboardtype: TextInputType.emailAddress,
               ),
               SizedBox(height: 16),
-              CustomTextField(
-                onSaved: (value) {
-                  passwordcontroller.text = value ?? ' ';
-                },
-                controller: passwordcontroller,
-                validator: (value) {
-                  if (value == null || value.length < 6) {
-                    return "Password must be at least 6 characters";
-                  }
-                  return null;
-                },
-                hinttext: 'كلمة المرور',
-                keyboardtype: TextInputType.visiblePassword,
-                icon: Icon(Icons.remove_red_eye, color: AppColors.coloreye),
-              ),
+              PasswordField(passwordcontroller: passwordcontroller),
 
               SizedBox(height: 16),
-              CheckBox(),
+              CheckBox(
+                onChanged: (value) {
+                  isternismated = value;
+                },
+              ),
               SizedBox(height: 30),
               BlocBuilder<SignupCubit, SignupState>(
                 builder: (context, state) {
@@ -89,11 +81,18 @@ class _SignUpBodyState extends State<SignUpBody> {
                     text: 'إنشاء حساب',
                     onPressed: () {
                       if (_formkey.currentState!.validate()) {
-                        context.read<SignupCubit>().signup(
-                          email: emailcontroller.text,
-                          password: passwordcontroller.text,
-                          username: usernamecontroller.text,
-                        );
+                        if (isternismated) {
+                          context.read<SignupCubit>().signup(
+                            email: emailcontroller.text,
+                            password: passwordcontroller.text,
+                            username: usernamecontroller.text,
+                          );
+                        } else {
+                          builderrors(
+                            context,
+                            'الرجاء الموافقة على الشروط والأحكام',
+                          );
+                        }
                       } else {
                         setState(() {
                           _autovalidateMode = AutovalidateMode.always;

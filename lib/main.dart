@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:new_app/core/helper_function/routes.dart';
 import 'package:new_app/core/routes/app_routes.dart';
 import 'package:new_app/core/generated/l10n.dart';
+import 'package:new_app/core/services/bloc_observer.dart';
 import 'package:new_app/core/services/service_locator.dart';
 import 'package:new_app/core/services/shared_prefrence_singletone.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -10,6 +12,7 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = AppBlocObserver();
   await SharedPrefrenceSingletone.instance.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   setupGetIt();

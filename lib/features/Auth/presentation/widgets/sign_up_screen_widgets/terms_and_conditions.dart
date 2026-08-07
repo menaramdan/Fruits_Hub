@@ -4,8 +4,8 @@ import 'package:new_app/core/utils/app_text_styles.dart';
 import 'package:new_app/features/Auth/presentation/widgets/sign_up_screen_widgets/custom_check_box.dart';
 
 class CheckBox extends StatefulWidget {
-  const CheckBox({super.key});
-
+  const CheckBox({super.key, required this.onChanged});
+  final ValueChanged<bool> onChanged;
   @override
   State<CheckBox> createState() => _CheckBoxState();
 }
@@ -20,6 +20,7 @@ class _CheckBoxState extends State<CheckBox> {
         CustomCheckBox(
           onChanged: (bool value) {
             isAgree = value;
+            widget.onChanged(value);
             setState(() {});
           },
           isChecked: isAgree,
