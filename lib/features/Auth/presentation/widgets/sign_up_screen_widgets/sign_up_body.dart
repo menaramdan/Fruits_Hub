@@ -5,7 +5,7 @@ import 'package:new_app/core/helper_function/build_error.dart';
 import 'package:new_app/core/routes/app_routes.dart';
 import 'package:new_app/core/widgets/custom_button.dart';
 import 'package:new_app/core/widgets/custom_text_field.dart';
-import 'package:new_app/features/Auth/presentation/Cubit/cubit/signup_cubit.dart';
+import 'package:new_app/features/Auth/presentation/Cubit/signup_cubit/signup_cubit.dart';
 import 'package:new_app/features/Auth/presentation/widgets/log_in_screen_widgets/asking_of_an_account.dart';
 import 'package:new_app/features/Auth/presentation/widgets/sign_up_screen_widgets/password_field.dart';
 import 'package:new_app/features/Auth/presentation/widgets/sign_up_screen_widgets/terms_and_conditions.dart';
@@ -59,6 +59,9 @@ class _SignUpBodyState extends State<SignUpBody> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'الرجاء إدخال البريد الإلكتروني';
+                  }
+                  if (!value.contains("@") || !value.contains(".")) {
+                    return "من فضلك أدخل بريدًا إلكترونيًا صحيحًا";
                   }
                   return null;
                 },

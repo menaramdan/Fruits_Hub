@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:new_app/core/errors/custom_exception.dart';
 
 class AuthFirebaseService {
@@ -22,5 +23,19 @@ class AuthFirebaseService {
     } catch (e) {
       throw CustomException('حدث خطأ غير معروف، الرجاء المحاولة لاحقًا');
     }
+  }
+
+  Future<UserCredential> signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn.instance
+        .authenticate();
+
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.idToken,
+      idToken: googleAuth?.idToken,
+    );
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }
