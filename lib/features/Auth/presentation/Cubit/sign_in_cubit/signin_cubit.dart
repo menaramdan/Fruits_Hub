@@ -3,10 +3,10 @@ import 'package:meta/meta.dart';
 import 'package:new_app/features/Auth/Domain/Auth_repo.dart';
 import 'package:new_app/features/Auth/Domain/Entities/user_Entity.dart';
 
-part 'signup_state.dart';
+part 'signin_state.dart';
 
-class SignupCubit extends Cubit<SignupState> {
-  SignupCubit(this.authRepo) : super(SignupInitial());
+class SigninCubit extends Cubit<SignupState> {
+  SigninCubit(this.authRepo) : super(SignupInitial());
   final AuthRepo authRepo;
   Future<void> signup({
     required String email,
@@ -25,19 +25,6 @@ class SignupCubit extends Cubit<SignupState> {
       },
       ifRight: (user) {
         emit(SignupSuccess(user));
-      },
-    );
-  }
-
-  Future<void> login({required String email, required String password}) async {
-    emit(LoginLoading());
-    var result = await authRepo.signInWithPassword(email, password);
-    result.fold(
-      ifLeft: (failure) {
-        emit(LoginFailure(failure.message));
-      },
-      ifRight: (user) {
-        emit(LoginSuccess(user));
       },
     );
   }

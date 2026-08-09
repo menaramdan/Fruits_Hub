@@ -7,7 +7,7 @@ import 'package:new_app/core/utils/app_images.dart';
 import 'package:new_app/core/utils/app_text_styles.dart';
 import 'package:new_app/core/widgets/custom_button.dart';
 import 'package:new_app/core/widgets/custom_text_field.dart';
-import 'package:new_app/features/Auth/presentation/Cubit/signup_cubit/signup_cubit.dart';
+import 'package:new_app/features/Auth/presentation/Cubit/cubit/signup_cubit.dart';
 import 'package:new_app/features/Auth/presentation/widgets/log_in_screen_widgets/asking_of_an_account.dart';
 import 'package:new_app/features/Auth/presentation/widgets/log_in_screen_widgets/divder_or_widget.dart';
 import 'package:new_app/features/Auth/presentation/widgets/log_in_screen_widgets/social_log_in_buttons.dart';
@@ -69,7 +69,7 @@ class _LogInBodyState extends State<LogInBody> {
                 text: 'تسجيل دخول',
                 onPressed: () {
                   if (_formkey.currentState!.validate()) {
-                    context.read<SignupCubit>().login(
+                    context.read<SignupCubitCubit>().login(
                       email: emailcontroller.text,
                       password: passwordcontroller.text,
                     );

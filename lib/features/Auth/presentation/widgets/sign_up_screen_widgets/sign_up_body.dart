@@ -5,7 +5,7 @@ import 'package:new_app/core/helper_function/build_error.dart';
 import 'package:new_app/core/routes/app_routes.dart';
 import 'package:new_app/core/widgets/custom_button.dart';
 import 'package:new_app/core/widgets/custom_text_field.dart';
-import 'package:new_app/features/Auth/presentation/Cubit/signup_cubit/signup_cubit.dart';
+import 'package:new_app/features/Auth/presentation/Cubit/sign_in_cubit/signin_cubit.dart';
 import 'package:new_app/features/Auth/presentation/widgets/log_in_screen_widgets/asking_of_an_account.dart';
 import 'package:new_app/features/Auth/presentation/widgets/sign_up_screen_widgets/password_field.dart';
 import 'package:new_app/features/Auth/presentation/widgets/sign_up_screen_widgets/terms_and_conditions.dart';
@@ -78,14 +78,14 @@ class _SignUpBodyState extends State<SignUpBody> {
                 },
               ),
               SizedBox(height: 30),
-              BlocBuilder<SignupCubit, SignupState>(
+              BlocBuilder<SigninCubit, SignupState>(
                 builder: (context, state) {
                   return CustomButton(
                     text: 'إنشاء حساب',
                     onPressed: () {
                       if (_formkey.currentState!.validate()) {
                         if (isternismated) {
-                          context.read<SignupCubit>().signup(
+                          context.read<SigninCubit>().signup(
                             email: emailcontroller.text,
                             password: passwordcontroller.text,
                             username: usernamecontroller.text,
