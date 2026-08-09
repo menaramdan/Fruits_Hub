@@ -38,4 +38,29 @@ class AuthFirebaseService {
     );
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
+
+  Future signInWithPassword(String email, String password) async {
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      return credential.user!;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        throw CustomException('لا يوجد حساب بهذا البريد الإلكتروني.');
+      } else if (e.code == 'wrong-password') {
+        throw CustomException('كلمة المرور غير صحيحة.');
+      } else if (e.code == 'invalid-email') {
+        throw CustomException('البريد الإلكتروني غير صحيح.');
+      } else if (e.code == 'invalid-credential') {
+        throw CustomException('البريد الإلكتروني أو كلمة المرور غير صحيحة.');
+      } else {
+        throw CustomException('حدث خطأ غير معروف، الرجاء المحاولة لاحقًا.');
+      }
+    } catch (e) {
+      throw CustomException('حدث خطأ غير معروف، الرجاء المحاولة لاحقًا.');
+    }
+  }
 }

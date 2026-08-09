@@ -28,4 +28,17 @@ class SignupCubit extends Cubit<SignupState> {
       },
     );
   }
+
+  Future<void> login({required String email, required String password}) async {
+    emit(LoginLoading());
+    var result = await authRepo.signInWithPassword(email, password);
+    result.fold(
+      ifLeft: (failure) {
+        emit(LoginFailure(failure.message));
+      },
+      ifRight: (user) {
+        emit(LoginSuccess(user));
+      },
+    );
+  }
 }
