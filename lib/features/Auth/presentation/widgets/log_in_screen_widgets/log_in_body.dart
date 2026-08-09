@@ -25,6 +25,8 @@ class _LogInBodyState extends State<LogInBody> {
   final TextEditingController emailcontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
   final _formkey = GlobalKey<FormState>();
+  // ignore: unused_field
+  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -73,6 +75,10 @@ class _LogInBodyState extends State<LogInBody> {
                       email: emailcontroller.text,
                       password: passwordcontroller.text,
                     );
+                  } else {
+                    setState(() {
+                      _autovalidateMode = AutovalidateMode.always;
+                    });
                   }
                 },
               ),

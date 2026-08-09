@@ -1,4 +1,5 @@
 import 'package:dart_either/dart_either.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:new_app/core/errors/failure.dart';
 import 'package:new_app/core/service/auth_firebase_service.dart';
 import 'package:new_app/features/Auth/Data/models/user_model.dart';
@@ -34,6 +35,16 @@ class AuthRepoImple extends AuthRepo {
     try {
       var user = await authFirebaseService.signInWithPassword(email, password);
       return Right(UserModel.firebaseuseruser(user));
+    } on Exception catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> signInWithGoogle() async {
+    try {
+      var user_ = await authFirebaseService.signInWithGoogle();
+      return Right(UserModel.firebaseuseruser(user_.user!));
     } on Exception catch (e) {
       return Left(ServerFailure(e.toString()));
     }
