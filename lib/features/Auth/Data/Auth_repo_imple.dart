@@ -2,7 +2,7 @@ import 'package:dart_either/dart_either.dart';
 import 'package:new_app/core/errors/failure.dart';
 import 'package:new_app/core/service/auth_firebase_service.dart';
 import 'package:new_app/features/Auth/Data/models/user_model.dart';
-import 'package:new_app/features/Auth/Domain/Auth_repo.dart';
+import 'package:new_app/features/Auth/Domain/auth_repo.dart';
 import 'package:new_app/features/Auth/Domain/Entities/user_Entity.dart';
 
 class AuthRepoImple extends AuthRepo {

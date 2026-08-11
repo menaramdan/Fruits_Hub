@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_app/core/routes/app_routes.dart';
 import 'package:new_app/core/services/service_locator.dart';
-import 'package:new_app/features/Auth/Domain/Auth_repo.dart';
+import 'package:new_app/features/Auth/Domain/auth_repo.dart';
 import 'package:new_app/features/Auth/presentation/Cubit/sign_in_cubit/signin_cubit.dart';
 import 'package:new_app/features/Auth/presentation/Screens/login_screen.dart';
 import 'package:new_app/features/Auth/presentation/Screens/signe_up_screen.dart';

@@ -19,6 +19,7 @@ class OnboardingPageViewItem extends StatelessWidget {
   final Widget title;
   final String subtitle;
   final bool isvisible;
+  
 
   @override
   Widget build(BuildContext context) {

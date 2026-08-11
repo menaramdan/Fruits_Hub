@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:new_app/features/Auth/Domain/Auth_repo.dart';
+import 'package:new_app/features/Auth/Domain/auth_repo.dart';
 import 'package:new_app/features/Auth/Domain/Entities/user_Entity.dart';
 
 part 'signin_state.dart';
