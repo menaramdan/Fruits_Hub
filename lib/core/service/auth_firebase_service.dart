@@ -26,6 +26,10 @@ class AuthFirebaseService {
   }
 
   Future<UserCredential> signInWithGoogle() async {
+    await GoogleSignIn.instance.initialize(
+      serverClientId:
+          '353195202717-n33i1cpp9vhocjm2v5iecjisvtbrk861.apps.googleusercontent.com',
+    );
     final GoogleSignInAccount? googleUser = await GoogleSignIn.instance
         .authenticate();
 
@@ -33,7 +37,6 @@ class AuthFirebaseService {
         await googleUser?.authentication;
 
     final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.idToken,
       idToken: googleAuth?.idToken,
     );
     return await FirebaseAuth.instance.signInWithCredential(credential);

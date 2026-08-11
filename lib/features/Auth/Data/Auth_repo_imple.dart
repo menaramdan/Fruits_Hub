@@ -1,5 +1,4 @@
 import 'package:dart_either/dart_either.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:new_app/core/errors/failure.dart';
 import 'package:new_app/core/service/auth_firebase_service.dart';
 import 'package:new_app/features/Auth/Data/models/user_model.dart';

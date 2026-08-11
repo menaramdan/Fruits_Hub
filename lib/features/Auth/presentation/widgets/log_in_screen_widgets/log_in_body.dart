@@ -7,7 +7,7 @@ import 'package:new_app/core/utils/app_images.dart';
 import 'package:new_app/core/utils/app_text_styles.dart';
 import 'package:new_app/core/widgets/custom_button.dart';
 import 'package:new_app/core/widgets/custom_text_field.dart';
-import 'package:new_app/features/Auth/presentation/Cubit/cubit/signup_cubit.dart';
+import 'package:new_app/features/Auth/presentation/Cubit/sign_in_cubit/signin_cubit.dart';
 import 'package:new_app/features/Auth/presentation/widgets/log_in_screen_widgets/asking_of_an_account.dart';
 import 'package:new_app/features/Auth/presentation/widgets/log_in_screen_widgets/divder_or_widget.dart';
 import 'package:new_app/features/Auth/presentation/widgets/log_in_screen_widgets/social_log_in_buttons.dart';
@@ -71,7 +71,7 @@ class _LogInBodyState extends State<LogInBody> {
                 text: 'تسجيل دخول',
                 onPressed: () {
                   if (_formkey.currentState!.validate()) {
-                    context.read<SignupCubitCubit>().login(
+                    context.read<SigninCubit>().login(
                       email: emailcontroller.text,
                       password: passwordcontroller.text,
                     );
@@ -95,7 +95,9 @@ class _LogInBodyState extends State<LogInBody> {
               DivderOrWidget(),
               SizedBox(height: 16),
               SocialLogInButtons(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<SigninCubit>().signInWithGoogle();
+                },
                 title: 'تسجيل بواسطة جوجل',
                 icon: SvgPicture.asset(Assets.googleicon),
               ),

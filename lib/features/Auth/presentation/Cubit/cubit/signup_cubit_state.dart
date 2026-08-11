@@ -5,18 +5,16 @@ sealed class SignupCubitState {}
 
 final class SignupCubitInitial extends SignupCubitState {}
 
-final class Logininitial extends SignupCubitState {}
+final class SignupLoading extends SignupCubitState {}
 
-final class LoginSuccess extends SignupCubitState {
+final class SignupSuccess extends SignupCubitState {
   final UserEntity userEntity;
 
-  LoginSuccess(this.userEntity);
+  SignupSuccess(this.userEntity);
 }
 
-final class LoginLoading extends SignupCubitState {}
-
-final class LoginFailure extends SignupCubitState {
+final class SignupFailure extends SignupCubitState {
   final String errorMessage;
 
-  LoginFailure(this.errorMessage);
+  SignupFailure(this.errorMessage);
 }

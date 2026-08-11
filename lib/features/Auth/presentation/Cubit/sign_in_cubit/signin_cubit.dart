@@ -5,39 +5,32 @@ import 'package:new_app/features/Auth/Domain/Entities/user_Entity.dart';
 
 part 'signin_state.dart';
 
-class SigninCubit extends Cubit<SignupState> {
-  SigninCubit(this.authRepo) : super(SignupInitial());
+class SigninCubit extends Cubit<SigninState> {
+  SigninCubit(this.authRepo) : super(SigninInitial());
   final AuthRepo authRepo;
-  Future<void> signup({
-    required String email,
-    required String password,
-    required String username,
-  }) async {
-    emit(SignupLoading());
-    var result = await authRepo.createuserwithemailandpassword(
-      email,
-      password,
-      username,
-    );
+
+  Future<void> login({required String email, required String password}) async {
+    emit(SigninLoading());
+    var result = await authRepo.signInWithPassword(email, password);
     result.fold(
       ifLeft: (failure) {
-        emit(SignupFailure(failure.message));
+        emit(SigninFailure(failure.message));
       },
       ifRight: (user) {
-        emit(SignupSuccess(user));
+        emit(SigninSuccess(user));
       },
     );
   }
 
   Future<void> signInWithGoogle() async {
-    emit(SignupLoading());
+    emit(SigninLoading());
     var result = await authRepo.signInWithGoogle();
     result.fold(
       ifLeft: (failure) {
-        emit(SignupFailure(failure.message));
+        emit(SigninFailure(failure.message));
       },
       ifRight: (user) {
-        emit(SignupSuccess(user));
+        emit(SigninSuccess(user));
       },
     );
   }
