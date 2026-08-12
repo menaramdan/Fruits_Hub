@@ -48,4 +48,15 @@ class AuthRepoImple extends AuthRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, UserEntity>> signInWithFacebook() async{
+    try {
+      var user = await authFirebaseService.signInWithFacebook();
+      return Right(UserModel.firebaseuseruser(user.user!));
+    } on Exception catch (e) {
+          return Left(ServerFailure(e.toString()));
+    }
+    
+  }
 }

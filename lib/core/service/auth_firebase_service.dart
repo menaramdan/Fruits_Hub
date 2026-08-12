@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:new_app/core/errors/custom_exception.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class AuthFirebaseService {
   Future<User> createPasswordBasedAccount(
@@ -66,4 +67,13 @@ class AuthFirebaseService {
       throw CustomException('حدث خطأ غير معروف، الرجاء المحاولة لاحقًا.');
     }
   }
+
+  
+Future<UserCredential> signInWithFacebook() async {
+  final LoginResult loginResult = await FacebookAuth.instance.login();
+
+  final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
+
+  return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+}
 }
