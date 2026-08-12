@@ -102,14 +102,11 @@ class _LogInBodyState extends State<LogInBody> {
                 icon: SvgPicture.asset(Assets.googleicon),
               ),
               SizedBox(height: 16),
+              
               SocialLogInButtons(
-                onPressed: () {},
-                title: 'تسجيل بواسطة أبل',
-                icon: SvgPicture.asset(Assets.appleicon),
-              ),
-              SizedBox(height: 16),
-              SocialLogInButtons(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<SigninCubit>().signInWithFacebook();
+                },
                 title: 'تسجيل بواسطة فيسبوك',
                 icon: SvgPicture.asset(Assets.facebook),
               ),

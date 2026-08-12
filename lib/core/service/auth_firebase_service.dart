@@ -70,7 +70,14 @@ class AuthFirebaseService {
 
   
 Future<UserCredential> signInWithFacebook() async {
-  final LoginResult loginResult = await FacebookAuth.instance.login();
+  final LoginResult loginResult = await FacebookAuth.instance.login(
+    permissions: ['public_profile'],
+  );
+  if (loginResult.status != LoginStatus.success) {
+    throw CustomException(
+      'فشل تسجيل الدخول باستخدام Facebook: ${loginResult.status}',
+    );
+  }
 
   final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
 
