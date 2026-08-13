@@ -102,7 +102,6 @@ class _LogInBodyState extends State<LogInBody> {
                 icon: SvgPicture.asset(Assets.googleicon),
               ),
               SizedBox(height: 16),
-              
               SocialLogInButtons(
                 onPressed: () {
                   context.read<SigninCubit>().signInWithFacebook();
