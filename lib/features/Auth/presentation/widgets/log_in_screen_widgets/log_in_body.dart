@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:new_app/core/routes/app_routes.dart';
@@ -83,13 +82,13 @@ class _LogInBodyState extends State<LogInBody> {
                 },
               ),
               SizedBox(height: 33),
-              Askingofanaccount(
-                text: 'لا تمتلك حساب ؟',
-                text2: 'قم بانشاء حساب',
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    Navigator.pushNamed(context, AppRoutes.signUpScreen);
-                  },
+              GestureDetector(
+                onTap: () =>
+                    Navigator.pushNamed(context, AppRoutes.signUpScreen),
+                child: Askingofanaccount(
+                  text: 'لا تمتلك حساب ؟',
+                  text2: 'قم بانشاء حساب',
+                ),
               ),
               SizedBox(height: 33),
               DivderOrWidget(),

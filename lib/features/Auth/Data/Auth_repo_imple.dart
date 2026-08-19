@@ -1,13 +1,16 @@
 import 'package:dart_either/dart_either.dart';
 import 'package:new_app/core/errors/failure.dart';
 import 'package:new_app/core/service/auth_firebase_service.dart';
+import 'package:new_app/core/services/DataBaseServices.dart';
+import 'package:new_app/core/utils/backend_endpoint.dart';
 import 'package:new_app/features/Auth/Data/models/user_model.dart';
 import 'package:new_app/features/Auth/Domain/auth_repo.dart';
 import 'package:new_app/features/Auth/Domain/Entities/user_Entity.dart';
 
-class AuthRepoImple implements  AuthRepo {
+class AuthRepoImple implements AuthRepo {
   final AuthFirebaseService authFirebaseService;
-  AuthRepoImple(this.authFirebaseService);
+  final DataBaseServices dataBaseServices;
+  AuthRepoImple(this.authFirebaseService, this.dataBaseServices);
   @override
   Future<Either<Failure, UserEntity>> createuserwithemailandpassword(
     String email,
@@ -20,7 +23,9 @@ class AuthRepoImple implements  AuthRepo {
         password,
         username,
       );
-      return Right(UserModel.firebaseuseruser(user));
+      var userEnitity = UserModel.firebaseuseruser(user);
+      await addData(user: userEnitity);
+      return Right(userEnitity);
     } on Exception catch (e) {
       return Left(ServerFailure(e.toString()));
     }
@@ -50,13 +55,20 @@ class AuthRepoImple implements  AuthRepo {
   }
 
   @override
-  Future<Either<Failure, UserEntity>> signInWithFacebook() async{
+  Future<Either<Failure, UserEntity>> signInWithFacebook() async {
     try {
       var user = await authFirebaseService.signInWithFacebook();
       return Right(UserModel.firebaseuseruser(user.user!));
     } on Exception catch (e) {
-          return Left(ServerFailure(e.toString()));
+      return Left(ServerFailure(e.toString()));
     }
-    
+  }
+
+  @override
+  Future<void> addData({required UserEntity user}) async {
+    await dataBaseServices.getData(
+      path: BackendEndpoint.endoint,
+      data: user.toMap(),
+    );
   }
 }

@@ -1,18 +1,12 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:new_app/core/utils/app_colors.dart';
 import 'package:new_app/core/utils/app_text_styles.dart';
 
 class Askingofanaccount extends StatelessWidget {
-  const Askingofanaccount({
-    super.key,
-    required this.text,
-    required this.text2,
-    required this.recognizer,
-  });
+  const Askingofanaccount({super.key, required this.text, required this.text2});
   final String text;
   final String text2;
-  final GestureRecognizer recognizer;
+
   @override
   Widget build(BuildContext context) {
     return Text.rich(
@@ -26,7 +20,6 @@ class Askingofanaccount extends StatelessWidget {
             ),
           ),
           TextSpan(
-            recognizer: recognizer,
             text: text2,
             style: TextStyles.semiBold16.copyWith(
               fontFamily: 'Cairo',

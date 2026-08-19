@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_app/core/helper_function/build_error.dart';
@@ -6,7 +5,6 @@ import 'package:new_app/core/routes/app_routes.dart';
 import 'package:new_app/core/widgets/custom_button.dart';
 import 'package:new_app/core/widgets/custom_text_field.dart';
 import 'package:new_app/features/Auth/presentation/Cubit/cubit/signup_cubit.dart';
-import 'package:new_app/features/Auth/presentation/Cubit/sign_in_cubit/signin_cubit.dart';
 import 'package:new_app/features/Auth/presentation/widgets/log_in_screen_widgets/asking_of_an_account.dart';
 import 'package:new_app/features/Auth/presentation/widgets/sign_up_screen_widgets/password_field.dart';
 import 'package:new_app/features/Auth/presentation/widgets/sign_up_screen_widgets/terms_and_conditions.dart';
@@ -79,7 +77,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                 },
               ),
               SizedBox(height: 30),
-              BlocBuilder<SigninCubit, SigninState>(
+              BlocBuilder<SignupCubitCubit, SignupCubitState>(
                 builder: (context, state) {
                   return CustomButton(
                     text: 'إنشاء حساب',
@@ -117,12 +115,13 @@ class _SignUpBodyState extends State<SignUpBody> {
                 },
               ),
               SizedBox(height: 30),
-              Askingofanaccount(
-                text: 'تمتلك حساب بالفعل؟',
-                text2: 'قم بتسجيل الدخول',
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () =>
-                      Navigator.pushNamed(context, AppRoutes.loginScreen),
+              GestureDetector(
+                onTap: () =>
+                    Navigator.pushNamed(context, AppRoutes.loginScreen),
+                child: Askingofanaccount(
+                  text: 'تمتلك حساب بالفعل؟',
+                  text2: 'قم بتسجيل الدخول',
+                ),
               ),
             ],
           ),
