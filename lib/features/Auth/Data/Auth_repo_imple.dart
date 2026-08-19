@@ -5,7 +5,7 @@ import 'package:new_app/features/Auth/Data/models/user_model.dart';
 import 'package:new_app/features/Auth/Domain/auth_repo.dart';
 import 'package:new_app/features/Auth/Domain/Entities/user_Entity.dart';
 
-class AuthRepoImple extends AuthRepo {
+class AuthRepoImple implements  AuthRepo {
   final AuthFirebaseService authFirebaseService;
   AuthRepoImple(this.authFirebaseService);
   @override
