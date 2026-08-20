@@ -68,19 +68,23 @@ class AuthFirebaseService {
     }
   }
 
-  
-Future<UserCredential> signInWithFacebook() async {
-  final LoginResult loginResult = await FacebookAuth.instance.login(
-    permissions: ['public_profile'],
-  );
-  if (loginResult.status != LoginStatus.success) {
-    throw CustomException(
-      'فشل تسجيل الدخول باستخدام Facebook: ${loginResult.status}',
+  Future<UserCredential> signInWithFacebook() async {
+    final LoginResult loginResult = await FacebookAuth.instance.login(
+      permissions: ['public_profile'],
     );
+    if (loginResult.status != LoginStatus.success) {
+      throw CustomException(
+        'فشل تسجيل الدخول باستخدام Facebook: ${loginResult.status}',
+      );
+    }
+
+    final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
+
+    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
 
-  final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
-
-  return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-}
+  Future deleteUser() async {
+    await FirebaseAuth.instance.currentUser!.delete();
+  }
 }

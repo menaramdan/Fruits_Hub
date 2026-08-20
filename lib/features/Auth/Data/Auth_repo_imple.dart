@@ -1,4 +1,5 @@
 import 'package:dart_either/dart_either.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:new_app/core/errors/failure.dart';
 import 'package:new_app/core/service/auth_firebase_service.dart';
 import 'package:new_app/core/services/DataBaseServices.dart';
@@ -17,16 +18,20 @@ class AuthRepoImple implements AuthRepo {
     String password,
     String username,
   ) async {
+    User? user;
     try {
-      var user = await authFirebaseService.createPasswordBasedAccount(
+      user = await authFirebaseService.createPasswordBasedAccount(
         email,
         password,
         username,
       );
       var userEnitity = UserModel.firebaseuseruser(user);
-      await addData(user: userEnitity);
+      await addUserData(user: userEnitity);
       return Right(userEnitity);
     } on Exception catch (e) {
+      if (user != null) {
+        authFirebaseService.deleteUser();
+      }
       return Left(ServerFailure(e.toString()));
     }
   }
@@ -36,9 +41,12 @@ class AuthRepoImple implements AuthRepo {
     String email,
     String password,
   ) async {
+    User user;
     try {
-      var user = await authFirebaseService.signInWithPassword(email, password);
-      return Right(UserModel.firebaseuseruser(user));
+      user = await authFirebaseService.signInWithPassword(email, password);
+      var userEnitity = await getUserData(uid: user.uid);
+
+      return Right(userEnitity);
     } on Exception catch (e) {
       return Left(ServerFailure(e.toString()));
     }
@@ -65,10 +73,20 @@ class AuthRepoImple implements AuthRepo {
   }
 
   @override
-  Future<void> addData({required UserEntity user}) async {
-    await dataBaseServices.getData(
+  Future<void> addUserData({required UserEntity user}) async {
+    final usermodel = UserModel.fromEntity(user);
+    await dataBaseServices.addData(
       path: BackendEndpoint.endoint,
-      data: user.toMap(),
+      data: usermodel.toMap(),
     );
+  }
+
+  @override
+  Future<UserEntity> getUserData({required String uid}) async {
+    var userdata = await dataBaseServices.getData(
+      path: BackendEndpoint.getuser,
+      documentID: uid,
+    );
+    return UserModel.fromMap(userdata);
   }
 }

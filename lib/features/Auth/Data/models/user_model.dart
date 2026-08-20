@@ -8,11 +8,27 @@ class UserModel extends UserEntity {
     required super.uid,
   });
 
+  factory UserModel.fromEntity(UserEntity user) {
+    return UserModel(username: user.username, email: user.email, uid: user.uid);
+  }
+
   factory UserModel.firebaseuseruser(User user) {
     return UserModel(
       username: user.displayName ?? '',
       email: user.email ?? '',
-      uid: '',
+      uid: user.uid,
     );
+  }
+
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      username: map['username'] ?? '',
+      email: map['email'] ?? '',
+      uid: map['uid'] ?? '',
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {'username': username, 'email': email, 'uid': uid};
   }
 }
